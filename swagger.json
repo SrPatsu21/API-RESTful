@@ -1,0 +1,256 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API da Pizzaria",
+        "version": "1.0.0",
+        "description": "Documentação completa da API da pizzaria"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Servidor local"
+        }
+    ],
+    "paths": {
+        "/usuarios": {
+            "get": {
+                "summary": "Listar todos os usuários",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuários"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um novo usuário",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": { "type": "string" },
+                                    "email": { "type": "string" }
+                                },
+                                "required": ["nome", "email"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuário criado"
+                    }
+                }
+            }
+        },
+        "/usuarios/{id}": {
+            "get": {
+                "summary": "Buscar usuário por ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Usuário encontrado" },
+                    "404": { "description": "Usuário não encontrado" }
+                }
+            },
+            "put": {
+                "summary": "Atualizar completamente um usuário",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": { "type": "string" },
+                                    "email": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Usuário atualizado" }
+                }
+            },
+            "patch": {
+                "summary": "Atualizar parcialmente um usuário",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Usuário atualizado" }
+                }
+            },
+            "delete": {
+                "summary": "Remover um usuário",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Usuário removido com sucesso" }
+                }
+            }
+        },
+        "/pizzas": {
+            "get": {
+                "summary": "Listar pizzas com filtros e paginação",
+                "parameters": [
+                    { "name": "nome", "in": "query", "schema": { "type": "string" } },
+                    { "name": "tamanho", "in": "query", "schema": { "type": "string" } },
+                    { "name": "precoMin", "in": "query", "schema": { "type": "number" } },
+                    { "name": "precoMax", "in": "query", "schema": { "type": "number" } },
+                    { "name": "sort", "in": "query", "schema": { "type": "string" } },
+                    { "name": "order", "in": "query", "schema": { "type": "string" } },
+                    { "name": "page", "in": "query", "schema": { "type": "integer" } },
+                    { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+                ],
+                "responses": {
+                    "200": { "description": "Lista de pizzas" }
+                }
+            },
+            "post": {
+                "summary": "Criar uma nova pizza",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": { "type": "string" },
+                                    "preco": { "type": "number" },
+                                    "tamanho": { "type": "string" }
+                                },
+                                "required": ["nome", "preco", "tamanho"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": { "description": "Pizza criada" }
+                }
+            }
+        },
+        "/pizzas/{id}": {
+            "get": {
+                "summary": "Buscar pizza por ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Pizza encontrada" },
+                    "404": { "description": "Pizza não encontrada" }
+                }
+            },
+            "put": {
+                "summary": "Atualizar completamente uma pizza",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": { "type": "string" },
+                                    "preco": { "type": "number" },
+                                    "tamanho": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Pizza atualizada" }
+                }
+            },
+            "patch": {
+                "summary": "Atualizar parcialmente uma pizza",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Pizza atualizada" }
+                }
+            },
+            "delete": {
+                "summary": "Remover uma pizza",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Pizza removida com sucesso" }
+                }
+            }
+        }
+    }
+}
