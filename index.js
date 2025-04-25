@@ -13,6 +13,7 @@ const pizzasRouter = require('./routes/pizzas');
 // Definindo as opções do Swagger
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: '3.0.0',
         info: {
         title: 'API da Pizzaria',
         version: '1.0.0',

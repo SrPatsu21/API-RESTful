@@ -119,10 +119,13 @@ router.get('/:id', (req, res) => {
  *             properties:
  *               nome:
  *                 type: string
+ *                 description: Nome da pizza
  *               preco:
  *                 type: number
+ *                 description: Preço da pizza
  *               tamanho:
  *                 type: string
+ *                 description: Tamanho da pizza (pequeno, médio, grande)
  *             required:
  *               - nome
  *               - preco
@@ -130,6 +133,20 @@ router.get('/:id', (req, res) => {
  *     responses:
  *       201:
  *         description: Pizza criada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nome:
+ *                   type: string
+ *                 preco:
+ *                   type: number
+ *                 tamanho:
+ *                   type: string
+ *                 description: Detalhes da pizza criada
  */
 router.post('/', (req, res) => {
     const pizza = { id: idCounter++, ...req.body };
